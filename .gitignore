@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/modules.xml
+.idea/webdriver.iml
+.idea/workspace.xml
+node_modules/
+.idea/jsLibraryMappings.xml
+.idea/vcs.xml
+.idea/
+/allure-results/
+/junitTestReport/
