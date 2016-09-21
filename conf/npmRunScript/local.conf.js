@@ -1,12 +1,15 @@
 var browserstack = require('browserstack-local');
+var credential = require("../../conf/world.js").BScredential,
+    username = credential.BS_Daniel.Username,
+    accessKey = credential.BS_Daniel.AccessKey;
 
 exports.config = {
-  user: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-  key: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+  user: process.env.BROWSERSTACK_USERNAME || username,
+  key: process.env.BROWSERSTACK_ACCESS_KEY || accessKey,
 
   updateJob: false,
   specs: [
-    './tests/specs/local_test.js'
+    './tests/specs/login_test.js'
   ],
   exclude: [],
 
@@ -20,14 +23,26 @@ exports.config = {
   logLevel: 'verbose',
   coloredLogs: true,
   screenshotPath: './errorShots/',
-  baseUrl: '',
+  baseUrl: 'https://test.komplett.no/',
   waitforTimeout: 10000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 3,
 
   framework: 'mocha',
   mochaOpts: {
-      ui: 'bdd'
+      ui: 'bdd',
+      timeout: 90000,
+      globals: 'callback*'
+  },
+
+  reporters: ['dot', 'junit', 'allure'],
+  reporterOptions: {
+    junit: {
+      outputDir: './'
+    },
+    allure: {
+      outputDir: 'allure-results'
+    }
   },
 
   // Code to start browserstack local before start of test

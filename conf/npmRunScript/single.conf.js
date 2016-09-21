@@ -1,10 +1,15 @@
+var credential = require("../../conf/world.js").credential,
+    username = credential.BS_Daniel.Username,
+    accessKey = credential.BS_Daniel.AccessKey;
+
 exports.config = {
-  user: process.env.BROWSERSTACK_USERNAME || 'daniel486',
-  key: process.env.BROWSERSTACK_ACCESS_KEY || 'a3bx8eupWpzj4mMKDhJk',
+
+  user: process.env.BROWSERSTACK_USERNAME || username,
+  key: process.env.BROWSERSTACK_ACCESS_KEY || accessKey,
 
   updateJob: false,
   specs: [
-    './tests/specs/single_test.js'
+    './tests/specs/login_test.js'
   ],
   exclude: [],
 
